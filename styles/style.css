@@ -1,0 +1,36 @@
+body {
+  font-family: sans-serif;
+}
+
+ul.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+li {
+  width: 120px;
+  height: 25px;
+  background: none;
+  box-shadow: 3px 2px 5px 4px #94b7da;
+  text-align: center;
+  padding-top: 5px;
+}
+
+li.borders {
+  border-bottom: 3px solid #70abeb;
+  border-right: 3px solid #70abeb;
+}
+
+a {
+  color: black;
+  text-decoration-line: none;
+}
+
+a:focus {
+  color: #2b6099;
+  text-decoration-line: underline;
+  font-weight: bold;
+  outline: none;
+}

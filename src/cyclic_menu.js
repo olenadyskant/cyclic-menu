@@ -15,7 +15,7 @@ class MenuList {
   }
 
   executeList() {
-    this.list.forEach((element) => {
+    this.list.map((element) => {
       this.li = document.createElement("li");
       this.li.className = "nav-item";
       this.anchor = document.createElement("a");
@@ -50,30 +50,27 @@ class NavMenu {
 class MoveHandler {
   constructor() {
     this.nav = document.getElementById("main-menu");
-    this.active = document.getElementsByClassName("nav-item")[0];
+    this.activeItems = document.getElementsByClassName("nav-item");
+    this.active = this.activeItems[0];
     this.active.firstElementChild.focus();
     this.active.firstElementChild.click();
     this.active.classList.add("borders");
 
-    this.nav.addEventListener("keydown", this.move.bind(this));
+    this.nav.addEventListener("keydown", this.selectMenuItem.bind(this));
   }
 
-  move(event) {
+  selectMenuItem(event) {
     switch (event.code) {
       case "ArrowRight":
         this.active.classList.remove("borders");
-        this.active =
-          this.active.nextElementSibling ||
-          document.getElementsByClassName("nav-item")[0];
+        this.active = this.active.nextElementSibling || this.activeItems[0];
         this.active.classList.add("borders");
         break;
       case "ArrowLeft":
         this.active.classList.remove("borders");
         this.active =
           this.active.previousElementSibling ||
-          document.getElementsByClassName("nav-item")[
-            document.getElementsByClassName("nav-item").length - 1
-          ];
+          this.activeItems[this.activeItems.length - 1];
         this.active.classList.add("borders");
         break;
     }

@@ -40,7 +40,7 @@ class NavMenu {
   }
 
   executeNav() {
-    this.items.forEach((element) => this.ul.append(element));
+    this.items.map((element) => this.ul.append(element));
     this.nav.append(this.ul);
     this.parent.prepend(this.nav);
   }
@@ -52,14 +52,18 @@ class MoveHandler {
     this.nav = document.getElementById("main-menu");
     this.activeItems = document.getElementsByClassName("nav-item");
     this.active = this.activeItems[0];
+    this.selectMenuItem();
+
+    this.nav.addEventListener("keydown", this.move.bind(this));
+  }
+
+  selectMenuItem() {
     this.active.firstElementChild.focus();
     this.active.firstElementChild.click();
     this.active.classList.add("borders");
-
-    this.nav.addEventListener("keydown", this.selectMenuItem.bind(this));
   }
 
-  selectMenuItem(event) {
+  move(event) {
     switch (event.code) {
       case "ArrowRight":
         this.active.classList.remove("borders");
@@ -74,9 +78,7 @@ class MoveHandler {
         this.active.classList.add("borders");
         break;
     }
-    this.active.firstElementChild.focus();
-    this.active.firstElementChild.click();
-    this.active.classList.add("borders");
+    this.selectMenuItem();
   }
 }
 
